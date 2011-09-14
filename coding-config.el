@@ -25,4 +25,21 @@
   (paredit-mode +1)
   (turn-off-whitespace))
 
+;; sr-speedbar
+(require 'sr-speedbar)
+(speedbar-add-supported-extension ".rb")
+(speedbar-add-supported-extension ".ru")
+(speedbar-add-supported-extension ".yaml")
+(speedbar-add-supported-extension ".yml")
+(speedbar-add-supported-extension ".css")
+(speedbar-add-supported-extension ".sass")
+(speedbar-add-supported-extension ".scss")
+(speedbar-add-supported-extension ".haml")
+(speedbar-add-supported-extension ".feature")
+(speedbar-add-supported-extension ".config")
+(speedbar-add-supported-extension "Gemfile")
+(speedbar-add-supported-extension "Rakefile")
+(speedbar-add-supported-extension ".erb")
+(sr-speedbar-refresh-turn-off)
+
 (provide 'coding-config)

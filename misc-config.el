@@ -313,4 +313,8 @@
 ;; projectile is a project management mode
 (require 'projectile)
 
+;; alias
+(defalias 'rs 'replace-string)
+
+
 (provide 'misc-config)
