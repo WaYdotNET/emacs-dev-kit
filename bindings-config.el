@@ -1,3 +1,4 @@
+
 ;;; A set of additional keybindings
 ;;; This file is part of the Emacs Dev Kit
 
@@ -121,5 +122,40 @@
                                   (interactive)
                                   (message "Arrow key navigation is disabled. Use C-f instead.")))
 
+
+;; WaYdotNET
+
+;; MOVE WINDOWS
+;; with ALT + ARROW KEY
+;; http://emacsblog.org/2008/05/01/quick-tip-easier-window-switching-in-emacs/
+(windmove-default-keybindings 'meta)
+
+
+;; auto-complete-mode
+(global-set-key (kbd "M-q") 'auto-complete-mode)
+
+;; SMEX
+(require 'smex)
+(smex-initialize)
+(global-set-key (kbd "M-x") 'smex)
+(global-set-key (kbd "M-X") 'smex-major-mode-commands)
+;; This is your old M-x.
+(global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
+
+;; sr-speedbar
+(require 'sr-speedbar)
+(sr-speedbar-refresh-turn-off)
+(global-set-key (kbd "<f2>") 'sr-speedbar-toggle)
+
+;; dired
+(global-set-key (kbd "<f3>") 'dired)
+
+(global-set-key (kbd "M-7") 'comment-or-uncomment-current-line-or-region)
+(define-key ruby-mode-map (kbd "#") 'ruby-interpolate)
+
+;; OCCUR
+(global-set-key (kbd "C-c C-o") 'occur)
+;; redo+
+(global-set-key (kbd "C-?") 'redo)
 
 (provide 'bindings-config)
