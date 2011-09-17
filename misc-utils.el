@@ -127,4 +127,5 @@ to markdown blockquote rules. Useful to add snippets under bullet points."
   (while (re-search-forward "\\\\transdissolve" nil t)
     (replace-match "" nil nil)))
 
+
 (provide 'misc-utils)

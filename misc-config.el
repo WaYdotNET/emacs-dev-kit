@@ -317,4 +317,12 @@
 (defalias 'rs 'replace-string)
 
 
+;; full-ack.el
+(add-to-list 'load-path "~/.emacs.d/vendor")
+(autoload 'ack-same "full-ack" nil t)
+(autoload 'ack "full-ack" nil t)
+(autoload 'ack-find-same-file "full-ack" nil t)
+(autoload 'ack-find-file "full-ack" nil t)
+
+
 (provide 'misc-config)
