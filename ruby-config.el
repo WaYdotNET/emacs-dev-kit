@@ -3,9 +3,16 @@
 
 
 ;; Rsense
-(setq rsense-home "/opt/rsense-0.3")
+(setq rsense-home "~/rsense-0.3")
 (add-to-list 'load-path (concat rsense-home "/etc"))
 (require 'rsense)
+
+;; Autocomplere
+(add-to-list 'load-path "~/.emacs.d/vendor/auto-complete-1.4.20110207/")
+(require 'auto-complete-config)
+(add-to-list 'ac-dictionary-directories "~/.emacs.d//vendor/auto-complete-1.4.20110207ac-dict")
+(ac-config-default)
+
 
 ;; Rsense + Autocomplete
 (add-hook 'ruby-mode-hook
