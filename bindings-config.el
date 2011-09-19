@@ -159,4 +159,7 @@
 ;; redo+
 (global-set-key (kbd "C-?") 'redo)
 
+;; deft
+(global-set-key [f8] 'deft)
+
 (provide 'bindings-config)

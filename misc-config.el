@@ -280,7 +280,7 @@
 (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
 
 ;; graphviz-mode
-(load-file (concat ext-dir "graphviz-dot-mode.el")) 
+(load-file (concat ext-dir "graphviz-dot-mode.el"))
 
 
 (autoload 'find-file-in-project "find-file-in-project"
@@ -323,6 +323,14 @@
 (autoload 'ack "full-ack" nil t)
 (autoload 'ack-find-same-file "full-ack" nil t)
 (autoload 'ack-find-file "full-ack" nil t)
+
+;; deft
+;; http://jblevins.org/projects/deft/
+(require 'deft)
+(add-to-list 'load-path "~/.emacs.d/vendor/deft/")
+(setq deft-extension "txt")
+(setq deft-directory "~/Dropbox/notes")
+(setq deft-text-mode 'markdown-mode)
 
 
 (provide 'misc-config)
