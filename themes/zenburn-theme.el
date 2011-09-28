@@ -80,7 +80,7 @@
       (zenburn-blue-4 "#4c7073")
       (zenburn-blue-5 "#366060")
       (zenburn-magenta "#dc8cc3"))
-  (custom-theme-set-faces 
+  (custom-theme-set-faces
    'zenburn
    '(link ((t (:foreground "#f0dfaf" :underline t))))
    '(link-visited ((t (:foreground "#8b008b" :underline t))))
@@ -97,8 +97,7 @@
    `(cursor ((,class (:foreground ,zenburn-fg))))
    `(escape-glyph-face ((,class (:foreground ,zenburn-red))))
    `(fringe ((,class (:foreground ,zenburn-fg :background ,zenburn-bg))))
-   `(header-line ((,class (:foreground ,zenburn-yellow :background ,zenburn-bg-1
-                                  :box (:color ,zenburn-green :line-width 2)))))
+   `(header-line ((,class (:foreground ,zenburn-yellow :background ,zenburn-bg-1))))
    `(highlight ((,class (:background ,zenburn-bg+1))))
 
    ;;; compilation
@@ -436,7 +435,7 @@
 
 (custom-theme-set-variables
  'zenburn
- '(ansi-color-names-vector [zenburn-bg zenburn-red zenburn-green zenburn-yellow 
+ '(ansi-color-names-vector [zenburn-bg zenburn-red zenburn-green zenburn-yellow
                                        zenburn-blue zenburn-magenta zenburn-cyan zenburn-fg]))
 
 (provide-theme 'zenburn)
