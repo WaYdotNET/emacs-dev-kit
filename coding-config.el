@@ -40,6 +40,8 @@
 (speedbar-add-supported-extension "Gemfile")
 (speedbar-add-supported-extension "Rakefile")
 (speedbar-add-supported-extension ".erb")
+(speedbar-add-supported-extension ".textile")
+(speedbar-add-supported-extension ".markdown")
 (sr-speedbar-refresh-turn-off)
 
 (provide 'coding-config)

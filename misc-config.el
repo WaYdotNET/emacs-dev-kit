@@ -17,7 +17,7 @@
 
 (delete-selection-mode t)                ; delete the selection with a keypress
 
-(unless (= emacs-major-version 24) 
+(unless (= emacs-major-version 24)
   (setq x-select-enable-clipboard t       ; copy-paste should work ...
         interprogram-paste-function       ; ...with...
         'x-cut-buffer-or-selection-value)) ; ...other X clients
@@ -274,6 +274,10 @@
 (setq auto-mode-alist
       (cons '("\\.markdown$" . markdown-mode)
             (cons '("\\.md$" . markdown-mode) auto-mode-alist)))
+
+;; textile-mode
+(require 'textile-mode)
+(add-to-list 'auto-mode-alist '("\\.textile$" . textile-mode))
 
 ;; yaml-mode
 (require 'yaml-mode)
