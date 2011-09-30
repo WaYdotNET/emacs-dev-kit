@@ -46,7 +46,7 @@
 (erc-truncate-mode +1)
 
 ;; share my real name
-(setq erc-user-full-name "Bozhidar Batsov")
+(setq erc-user-full-name "Carlo Bertini")
 
 ;; enable spell checking
 (erc-spelling-mode 1)
@@ -115,7 +115,7 @@ that can occur between two notifications.  The default is
   (erc-services-mode 1)
   (setq erc-prompt-for-nickserv-password nil)
   (setq erc-nickserv-passwords
-        `((freenode (("bozhidar" . ,bozhidar-pass)))))
+        `((freenode (("WaYdotNET" . ,bozhidar-pass)))))
 )
 
 ;; utf-8 always and forever
@@ -125,7 +125,7 @@ that can occur between two notifications.  The default is
   "Connect to IRC."
   (interactive)
   (when (y-or-n-p "Do you want to start IRC? ")
-    (erc :server "irc.freenode.net" :port 6667 :nick "bozhidar")))
+    (erc :server "irc.freenode.net" :port 6667 :nick "WaYdotNET")))
 
 (defun filter-server-buffers ()
   (delq nil
