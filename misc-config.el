@@ -330,11 +330,19 @@
 
 ;; deft
 ;; http://jblevins.org/projects/deft/
+(add-to-list 'load-path "~/.emacs.d/vendor/deft")
 (require 'deft)
-(add-to-list 'load-path "~/.emacs.d/vendor/deft/")
-(setq deft-extension "txt")
+(setq deft-extension "textile")
 (setq deft-directory "~/Dropbox/notes")
-(setq deft-text-mode 'markdown-mode)
+(setq deft-text-mode 'textile-mode)
+
+;; redmine
+;; https://github.com/fukamachi/redmine-el
+(require 'redmine)
+
+;; org-redmine
+;; https://github.com/hackers/org-redmine
+(require 'org-redmine)
 
 
 (provide 'misc-config)
