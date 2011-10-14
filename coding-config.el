@@ -42,6 +42,8 @@
 (speedbar-add-supported-extension ".erb")
 (speedbar-add-supported-extension ".textile")
 (speedbar-add-supported-extension ".markdown")
+(speedbar-add-supported-extension ".less")
+(speedbar-add-supported-extension ".slim")
 (sr-speedbar-refresh-turn-off)
 
 (provide 'coding-config)

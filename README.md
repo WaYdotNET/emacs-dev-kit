@@ -30,6 +30,8 @@ The Emacs Dev Kit features enhanced support for the following programming langua
 * Prolog
 * LaTeX
 * XML
+* Less
+* Slim
 
 I'll be adding more stuff along the way.
 
@@ -46,6 +48,9 @@ I'll be adding more stuff along the way.
 * Sass
 * Haml
 * Yaml
+* Textile
+* Less
+* Slim
 
 ## Misc
 
