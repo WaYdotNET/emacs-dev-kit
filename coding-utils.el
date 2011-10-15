@@ -264,5 +264,5 @@
 (require 'redo+)
 (require 'auto-complete)
 (require 'ruby-end)
-
+(require 'rainbow-mode)
 (provide 'coding-utils)
