@@ -1,4 +1,4 @@
-;; Time-stamp: <2011-10-14 16:12:24 (waydotnet)>
+;; Time-stamp: <2011-10-18 17:07:15 (waydotnet)>
 
 ;; Copyright (C) 2009-2011  Bozhidar Batsov.
 ;; This file is free software licensed under the terms of the
@@ -71,9 +71,10 @@ Emacs load path."
 (setq custom-file (concat dotfiles-dir "custom.el"))
 
 ;; a list of all configurations that must be loaded
-(defvar configs '(elpa misc coding emacs-lisp common-lisp scheme c
+(defvar configs '(elpa misc coding emacs-lisp common-lisp scheme c 
                        python ruby coffee-script haskell scala slim less-css
-                       ibuffer erc auctex nxml org prolog bindings))
+                       ibuffer erc auctex nxml org prolog bindings
+			sunrise-commander))
 (defun require-config (config)
   (message "Loading %s..." config)
   (require config)
