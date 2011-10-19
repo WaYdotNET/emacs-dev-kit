@@ -1,4 +1,4 @@
-;;; miscellaneous configuration that doesn't
+
 ;;; belong to any particular place
 ;;; This file is part of the Emacs Dev Kit
 
@@ -221,13 +221,19 @@
 ;; gist integration
 (require 'gist)
 
+;;
 ;; zenburn color theme setup
-(if (>= emacs-major-version 24)
-    (load-theme 'zenburn t)
-  (progn
-    (require 'color-theme-zenburn)
-    (color-theme-zenburn)))
+;; (if (>= emacs-major-version 24)
+;;     (load-theme 'zenburn t)
+;;   (progn
+;;     (require 'color-theme-zenburn)
+;;     (color-theme-zenburn)))
 
+;; solarize color theme setup
+(if (>= emacs-major-version 24)
+    (progn
+      (require 'color-theme-solarized)
+      (color-theme-solarized-dark)))
 
 ;; highlight the current line; set a custom face, so we can
 ;; recognize from the normal marking (selection)
