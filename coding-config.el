@@ -44,6 +44,8 @@
 (speedbar-add-supported-extension ".markdown")
 (speedbar-add-supported-extension ".less")
 (speedbar-add-supported-extension ".slim")
+(speedbar-add-supported-extension ".tt")
+
 (sr-speedbar-refresh-turn-off)
 
 (provide 'coding-config)
