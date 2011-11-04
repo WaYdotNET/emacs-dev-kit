@@ -1,8 +1,8 @@
-#name : class ... end
-#contributor : hitesh <hitesh.jasani@gmail.com>
+#name : module ... end
+#contributor : WaYdotNET <waydotnet@gmail.com>
 #group : definitions
 # --
-class ${1:`(let ((fn (capitalize (file-name-nondirectory
+module ${1:`(let ((fn (capitalize (file-name-nondirectory
                                  (file-name-sans-extension
 				 (or (buffer-file-name)
 				     (buffer-name (current-buffer))))))))
