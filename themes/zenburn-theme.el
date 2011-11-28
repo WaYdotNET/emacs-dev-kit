@@ -50,6 +50,7 @@
       ;; Zenburn palette
       ;; colors with +x are lighter, colors with -x are darker
       (zenburn-fg "#dcdccc")
+      (highlight-indent-face "#f0dfaf")
       (zenburn-fg-1 "#656555")
       (zenburn-bg-1 "#2b2b2b")
       (zenburn-bg "#3f3f3f")

@@ -348,5 +348,4 @@
 ;; https://github.com/hackers/org-redmine
 (require 'org-redmine)
 
-
 (provide 'misc-config)
