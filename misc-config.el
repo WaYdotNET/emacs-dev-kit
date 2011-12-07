@@ -223,12 +223,13 @@
 
 ;;
 ;; zenburn color theme setup
- (if (>= emacs-major-version 24)
-     (load-theme 'zenburn t)
-   (progn
-     (require 'color-theme-zenburn)
-     (color-theme-zenburn)))
-
+ ;; (if (>= emacs-major-version 24)
+ ;;     (load-theme 'zenburn t)
+ ;;   (progn
+ ;;     (require 'color-theme-zenburn)
+ ;;     (color-theme-zenburn)))
+(require 'color-theme-railscasts)
+(color-theme-railscasts)
 ;; solarize color theme setup
 ;; (require 'color-theme-solarized)
 ;; (color-theme-solarized-light)
