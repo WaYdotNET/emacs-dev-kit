@@ -110,8 +110,8 @@
 
 ;; real Emacs hackers don't use the arrow keys
 
-;; (global-set-key (kbd "<up>") (lambda () 
-;;                                (interactive) 
+;; (global-set-key (kbd "<up>") (lambda ()
+;;                                (interactive)
 ;;                                (message "Arrow key navigation is disabled. Use C-p instead.")))
 ;; (global-set-key (kbd "<down>") (lambda ()
 ;;                                  (interactive)
@@ -119,7 +119,7 @@
 ;; (global-set-key (kbd "<left>") (lambda ()
 ;;                                  (interactive)
 ;;                                  (message "Arrow key navigation is disabled. Use C-b instead.")))
-;; (global-set-key (kbd "<right>") (lambda () 
+;; (global-set-key (kbd "<right>") (lambda ()
 ;;                                   (interactive)
 ;;                                   (message "Arrow key navigation is disabled. Use C-f instead.")))
 
@@ -145,7 +145,9 @@
 
 ;; sr-speedbar
 (require 'sr-speedbar)
-(sr-speedbar-refresh-turn-off)
+(sr-speedbar-refresh-turn-on)
+;; (sr-speedbar-auto-refresh)
+;; (sr-speedbar-skip-other-window-p)
 (global-set-key (kbd "<f2>") 'sr-speedbar-toggle)
 
 ;; dired

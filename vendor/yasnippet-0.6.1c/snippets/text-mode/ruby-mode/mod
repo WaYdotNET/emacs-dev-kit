@@ -1,13 +1,6 @@
-#name : module ... end
-#contributor : WaYdotNET <waydotnet@gmail.com>
-#group : definitions
+#name : module ModuleName ... end
+# key: mod
 # --
-module ${1:`(let ((fn (capitalize (file-name-nondirectory
-                                 (file-name-sans-extension
-				 (or (buffer-file-name)
-				     (buffer-name (current-buffer))))))))
-           (cond
-             ((string-match "_" fn) (replace-match "" nil nil fn))
-              (t fn)))`}
+module ${ModuleName}
   $0
-end # $1
+end

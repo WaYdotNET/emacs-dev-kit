@@ -1,4 +1,4 @@
 #name : each { |...| ... }
-#group : collections
+# key: ea
 # --
 each { |${e}| $0 }

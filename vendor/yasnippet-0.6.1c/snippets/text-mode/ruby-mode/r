@@ -1,4 +1,4 @@
 #name : attr_reader ...
-#group : definitions
+# key: r
 # --
 attr_reader :

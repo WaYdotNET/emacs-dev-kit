@@ -221,6 +221,8 @@
 ;; gist integration
 (require 'gist)
 
+;; https://github.com/zkim/emacs-dirtree
+(require 'dirtree)
 ;;
 ;; zenburn color theme setup
  ;; (if (>= emacs-major-version 24)

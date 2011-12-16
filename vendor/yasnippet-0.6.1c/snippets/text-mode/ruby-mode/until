@@ -1,6 +1,6 @@
 #name : until ... end
-#group: control structure
+# key: until
 # --
-until ${condition}
+until ${1:condition}
   $0
 end

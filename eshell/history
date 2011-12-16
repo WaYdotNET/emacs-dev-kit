@@ -1,0 +1,82 @@
+cd admin/
+ll
+ls
+cd views/layouts/
+ls
+mv application.slim less.slim
+mv less.slim less.haml
+mv less.haml less.html.haml
+mv less.html.haml less.slim
+ls
+cd ..
+cd ..
+ll
+ls
+padrino -v
+find-file test.rb
+rm test.rb
+rm test.watchr
+ll
+ls
+exit
+cd admin/
+mkdir helpers
+cd helpers/
+find-file admin_helper.rb
+cd ..
+cd ..
+cd public/
+ls
+cd admin/
+ls
+cd images/
+lsd
+ls
+mkdir buttons
+cd buttons/
+wget http://git.waydotnet.com/index.cgi/optilenz/plain/public/admin/images/buttons/cross.png
+cd ..
+cd ..
+cd ..
+cd ..
+find-file .gitignore
+cd ..
+cd ..
+cd lo
+ls
+cd ..
+cd app
+cd locale/
+ls
+cd admin
+ls
+rm cs.yml da.yml hu.yml  ja.yml  lv.yml  nl.yml no.yml pl.yml tr.yml uk.yml zh_tw.yml zh_cn.yml 
+ls
+ls
+mv pt_br.yml pt.yml
+ls
+cd ..
+cd orm/
+ls
+rm cs.yml da.yml  hu.yml ja.yml lv.yml nl.yml no.yml pl.yml tr.yml uk.yml zh_tw.yml zh_cn.yml 
+ls
+mv pt_br.yml pt.yml
+ls
+cd ..
+ls
+cd admin/
+ls
+cd ..
+ls
+cd ..
+cd photogalleries/
+ls
+cp gallery.slim _gallery.slim
+cd photogalleries/l
+ls
+ruby extractor.rb
+ruby extractor.rb
+ruby extractor.rb
+ruby extractor.rb
+extractor.rb:28: syntax error, unexpected kEND, expecting '}'
+find-file gallery.html.slim
