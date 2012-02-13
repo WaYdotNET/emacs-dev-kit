@@ -145,7 +145,7 @@
 
 ;; sr-speedbar
 (require 'sr-speedbar)
-(sr-speedbar-refresh-turn-on)
+(sr-speedbar-refresh-turn-off)
 ;; (sr-speedbar-auto-refresh)
 ;; (sr-speedbar-skip-other-window-p)
 (global-set-key (kbd "<f2>") 'sr-speedbar-toggle)

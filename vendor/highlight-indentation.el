@@ -28,7 +28,7 @@
 ;; Used buffer-local to toggle on-off
 (setq-default highlight-indent-active nil)
 ;; Needed to to remove font-lock-keywords
-(setq-default highlight-indent-offset 4)
+(setq-default highlight-indent-offset 2)
 
 (defun highlight-indentation (&optional indent-width)
   "Toggle highlight indentation.
@@ -57,11 +57,23 @@ indent-width will be guessed from current major-mode"
     (if highlight-indent-active
         (progn ;; Toggle off
           (set (make-local-variable 'highlight-indent-active) nil)
-          (font-lock-remove-keywords nil `((,re (1 'highlight-indent-face))))
+          (font-lock-remove-keywords nil `(("^ +"
+                                            (,re (progn
+                                                   (goto-char (match-beginning 0))
+                                                   (match-end 0))
+                                                 nil
+                                                 (1 'highlight-indent-face t))
+                                            )))
           (message "highlight-indentation OFF"))
       (progn ;; Toggle on
         (set (make-local-variable 'highlight-indent-active) t)
-        (font-lock-add-keywords nil `((,re (1 'highlight-indent-face))))
+         (font-lock-add-keywords nil `(("^ +"
+                                        (,re (progn
+                                               (goto-char (match-beginning 0))
+                                               (match-end 0))
+                                             nil
+                                             (1 'highlight-indent-face t))
+                                        )))
         (message (format "highlight-indentation with indent-width %s"
                          highlight-indent-offset))))
     (font-lock-fontify-buffer)))

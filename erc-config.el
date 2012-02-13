@@ -9,8 +9,8 @@
 
 ;; Join the a couple of interesting channels whenever connecting to Freenode.
 (setq erc-autojoin-channels-alist '(("freenode.net"
-                                     "#emacs" "#clojure" "#lisp"
-                                     "#scala" "#fedora-java")))
+                                     "#padrino" "#ruby"
+                                     "#sinatra" )))
 
 ;; Interpret mIRC-style color commands in IRC chats
 (setq erc-interpret-mirc-color t)

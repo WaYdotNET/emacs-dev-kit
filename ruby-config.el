@@ -3,15 +3,16 @@
 
 
 ;; Rsense
-(setq rsense-home "~/rsense-0.3")
+(setq rsense-home "~/dotfiles/rsense-last")
 (add-to-list 'load-path (concat rsense-home "/etc"))
 (require 'rsense)
 
 ;; Autocomplere
-(add-to-list 'load-path "~/.emacs.d/vendor/auto-complete-1.4.20110207/")
+(add-to-list 'load-path "~/.emacs.d/")
 (require 'auto-complete-config)
-(add-to-list 'ac-dictionary-directories "~/.emacs.d//vendor/auto-complete-1.4.20110207ac-dict")
+(add-to-list 'ac-dictionary-directories "~/.emacs.d//ac-dict")
 (ac-config-default)
+
 
 
 ;; Rsense + Autocomplete

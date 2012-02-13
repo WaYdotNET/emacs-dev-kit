@@ -351,4 +351,17 @@
 ;; https://github.com/hackers/org-redmine
 (require 'org-redmine)
 
+(require 'highlight-indentation)
+
+;; tomatinho
+;; https://github.com/konr/tomatinho
+(add-to-list 'load-path "~/.emacs.d/tomatinho")
+(require 'tomatinho)
+(global-set-key (kbd "<f4>") 'tomatinho)
+
+;; gist
+;; https://github.com/defunkt/gist.el
+(add-to-list 'load-path "~/.emacs.d/vendor/gist")
+(require 'gist)
+
 (provide 'misc-config)

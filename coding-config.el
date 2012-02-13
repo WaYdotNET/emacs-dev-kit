@@ -47,5 +47,4 @@
 (speedbar-add-supported-extension ".tt")
 
 (sr-speedbar-refresh-turn-off)
-
 (provide 'coding-config)

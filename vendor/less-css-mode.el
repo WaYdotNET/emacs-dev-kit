@@ -5,7 +5,7 @@
 ;; Author: Steve Purcell <steve@sanityinc.com>
 ;; URL: https://github.com/purcell/less-css-mode
 ;; Keywords: less css mode
-;; Version: 0.1
+;; Version: DEV
 ;;
 ;; This program is free software; you can redistribute it and/or
 ;; modify it under the terms of the GNU General Public License as
@@ -20,9 +20,9 @@
 ;;; Commentary:
 ;;
 ;; This mode provides syntax highlighting for LESS CSS files, plus
-;; optional support for flymake and compilation of .less files to .css
-;; files at the time they are saved: use `less-css-compile-at-save' to
-;; enable the latter.
+;; optional support for `flymake-mode' and compilation of .less files
+;; to .css files at the time they are saved: use
+;; `less-css-compile-at-save' to enable the latter.
 ;;
 ;; Command line utility "lessc" is required if enabling flymake or
 ;; setting `less-css-compile-at-save' to t.  To install "lessc" using
@@ -36,10 +36,23 @@
 ;; nested blocks may not work correctly with versions of `css-mode'
 ;; other than that bundled with recent Emacs.
 ;;
+;; You can specify per-file values for `less-css-compile-at-save',
+;; `less-css-output-file-name' or `less-css-output-directory' using a
+;; variables header at the top of your .less file, e.g.:
+;;
+;; // -*- less-css-compile-at-save: t; less-css-output-directory: "../css" -*-
+;;
+;; If you don't need CSS output but would like to be warned of any
+;; syntax errors in your .less source, enable `flymake-mode': support
+;; is provided for .less files, but note that the less compiler is a
+;; little slow, so there can be a delay of several seconds between
+;; editing and receiving feedback on any error.
+;;
 ;;; Credits
 ;;
-;; This mode was, in large part, built using Anton Johansson's
-;; scss-mode as a template -- thanks Anton! https://github.com/antonj
+;; The original code for this mode was, in large part, written using
+;; Anton Johansson's scss-mode as a template -- thanks Anton!
+;; https://github.com/antonj
 ;;
 ;;; Code:
 
@@ -52,51 +65,90 @@
   :prefix "less-css-"
   :group 'css)
 
-(defcustom less-css-lessc-command "lessc"
+(defcustom less-css-lessc-command "/Users/waydotnet/.rvm/gems/ruby-1.9.3-p0/bin/lessc"
   "Command used to compile LESS files, should be lessc or the
-  complete path to your lessc runnable example:
+  complete path to your lessc executable, e.g.:
   \"~/.gem/ruby/1.8/bin/lessc\""
   :group 'less-css)
 
 (defcustom less-css-compile-at-save nil
-  "If not nil the LESS buffers will be compiled after each save"
+  "If non-nil, the LESS buffers will be compiled to CSS after each save"
   :type 'boolean
   :group 'less-css)
 
 (defcustom less-css-lessc-options '()
-  "Command line Options for less executable."
+  "Command line options for less executable.
+
+Use \"-x\" to minify output."
+  :type '(repeat string)
   :group 'less-css)
+
+(defvar less-css-output-directory nil
+  "Directory in which to save CSS, or nil to use the LESS file's directory.
+
+This path is expanded relative to the directory of the LESS file
+using `expand-file-name', so both relative and absolute paths
+will work as expected.")
+
+(make-variable-buffer-local 'less-css-output-directory)
+
+(defvar less-css-output-file-name nil
+  "File name in which to save CSS, or nil to use <name>.css for <name>.less.
+
+This can be also be set to a full path, or a relative path.  If
+the path is relative, it will be relative to the value of
+`less-css-output-dir', if set, or the current directory by
+default.")
+
+(make-variable-buffer-local 'less-css-output-file-name)
 
 (defconst less-css-default-error-regex "Syntax Error on line \\([0-9]+\\)\e\\[39m\e\\[31m in \e\\[39m\\([^ ]+\\)$")
 
-(defcustom less-css-compile-error-regex (list (concat "\\(" less-css-default-error-regex "\\)") 3 2 nil nil 1)
-  "Regex for finding line number file and error message in
-compilation buffers, syntax from
-`compilation-error-regexp-alist' (REGEXP FILE LINE COLUMN TYPE
-HYPERLINK HIGHLIGHT)"
-  :group 'less-css)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Compilation to CSS
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(add-to-list 'compilation-error-regexp-alist-alist
+             (list 'less-css (concat "\\(" less-css-default-error-regex "\\)") 3 2 nil nil 1))
+(add-to-list 'compilation-error-regexp-alist 'less-css)
 
 
-;; TODO: '&', interpolation, escaped values (~"..."), JS eval (~`...`), custom faces
-(defconst less-css-font-lock-keywords
-  '(;; Variables
-    ("@[a-z_-][a-z-_0-9]*" . font-lock-constant-face)
-    ;; Extended single-line comment syntax
-    ("//.*$" . font-lock-comment-face)
-    ;; Mixins
-    ("\\(?:[ \t{;]\\|^\\)\\(\\.[a-z_-][a-z-_0-9]*\\)[ \t]*;" . (1 font-lock-keyword-face)))
-  )
-
-(defun less-css-compile-maybe()
+(defun less-css-compile-maybe ()
   "Runs `less-css-compile' on if `less-css-compile-at-save' is t"
   (if less-css-compile-at-save
       (less-css-compile)))
 
-(defun less-css-compile()
-  "Compiles the current buffer, lessc filename.less"
+(defun less-css--output-path ()
+  "Calculate the path for the compiled CSS file created by `less-css-compile'."
+  (expand-file-name (or less-css-output-file-name
+                        (concat (file-name-nondirectory (file-name-sans-extension buffer-file-name)) ".css"))
+                    (or less-css-output-directory default-directory)))
+
+;;;###autoload
+(defun less-css-compile ()
+  "Compiles the current buffer to css using `less-css-lessc-command'."
   (interactive)
-  (compile (concat less-css-lessc-command " " (mapconcat 'identity less-css-lessc-options " ") " "
-                   "'" buffer-file-name "' '" (file-name-sans-extension buffer-file-name) ".css'")))
+  (message "Compiling less to css")
+  (compile
+   (mapconcat 'shell-quote-argument
+              (append (list less-css-lessc-command)
+                      less-css-lessc-options
+                      (list buffer-file-name (less-css--output-path)))
+              " ")))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Minor mode
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; TODO: interpolation ("@{val}"), escaped values (~"..."), JS eval (~`...`), custom faces
+(defconst less-css-font-lock-keywords
+  '(;; Variables
+    ("@[a-z_-][a-z-_0-9]*" . font-lock-constant-face)
+    ("&" . font-lock-preprocessor-face)
+    ;; Mixins
+    ("\\(?:[ \t{;]\\|^\\)\\(\\.[a-z_-][a-z-_0-9]*\\)[ \t]*;" . (1 font-lock-keyword-face)))
+  )
 
 ;;;###autoload
 (define-derived-mode less-css-mode css-mode "LESS"
@@ -104,11 +156,25 @@ HYPERLINK HIGHLIGHT)"
 Special commands:
 \\{less-css-mode-map}"
   (font-lock-add-keywords nil less-css-font-lock-keywords)
-  (add-to-list 'compilation-error-regexp-alist less-css-compile-error-regex)
+  ;; cpp-style comments
+  (modify-syntax-entry ?/ "< 124b" less-css-mode-syntax-table)
+  (modify-syntax-entry ?\n "> b" less-css-mode-syntax-table)
+  (set (make-local-variable 'comment-start) "//")
+  (set (make-local-variable 'comment-end) "")
+
   (add-hook 'after-save-hook 'less-css-compile-maybe nil t))
 
 (define-key less-css-mode-map "\C-c\C-c" 'less-css-compile)
 
+;;;###autoload
+(add-to-list 'auto-mode-alist '("\\.less" . less-css-mode))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Wiring for `flymake-mode'
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;;###autoload
 (defun flymake-less-css-init ()
   "Flymake support for LESS files"
   (let* ((temp-file   (flymake-init-create-temp-buffer-copy
@@ -122,8 +188,6 @@ Special commands:
 
 (push (list less-css-default-error-regex 2 1 nil 2) flymake-err-line-patterns)
 
-;;;###autoload
-(add-to-list 'auto-mode-alist '("\\.less" . less-css-mode))
 
 (provide 'less-css-mode)
 ;;; less-css-mode.el ends here

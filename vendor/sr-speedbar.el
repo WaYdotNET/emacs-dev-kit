@@ -271,7 +271,7 @@ Default is t."
          (set symbol value))
   :group 'sr-speedbar)
 
-(defcustom sr-speedbar-right-side t
+(defcustom sr-speedbar-right-side nil
   "Show the speedbar to the right side of the current window.
 If nil, the speedbar will appear on the left.
 Default is t."

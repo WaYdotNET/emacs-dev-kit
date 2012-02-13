@@ -1,63 +1,3 @@
-cd admin/
-ll
-ls
-cd views/layouts/
-ls
-mv application.slim less.slim
-mv less.slim less.haml
-mv less.haml less.html.haml
-mv less.html.haml less.slim
-ls
-cd ..
-cd ..
-ll
-ls
-padrino -v
-find-file test.rb
-rm test.rb
-rm test.watchr
-ll
-ls
-exit
-cd admin/
-mkdir helpers
-cd helpers/
-find-file admin_helper.rb
-cd ..
-cd ..
-cd public/
-ls
-cd admin/
-ls
-cd images/
-lsd
-ls
-mkdir buttons
-cd buttons/
-wget http://git.waydotnet.com/index.cgi/optilenz/plain/public/admin/images/buttons/cross.png
-cd ..
-cd ..
-cd ..
-cd ..
-find-file .gitignore
-cd ..
-cd ..
-cd lo
-ls
-cd ..
-cd app
-cd locale/
-ls
-cd admin
-ls
-rm cs.yml da.yml hu.yml  ja.yml  lv.yml  nl.yml no.yml pl.yml tr.yml uk.yml zh_tw.yml zh_cn.yml 
-ls
-ls
-mv pt_br.yml pt.yml
-ls
-cd ..
-cd orm/
-ls
 rm cs.yml da.yml  hu.yml ja.yml lv.yml nl.yml no.yml pl.yml tr.yml uk.yml zh_tw.yml zh_cn.yml 
 ls
 mv pt_br.yml pt.yml
@@ -80,3 +20,109 @@ ruby extractor.rb
 ruby extractor.rb
 extractor.rb:28: syntax error, unexpected kEND, expecting '}'
 find-file gallery.html.slim
+ll
+ls
+mv brands.html.silm brands.html.slim
+find-file brands.html.slim 
+ls
+cp application.html.slim application.html.slim_bkp
+ls
+exit
+ll
+ls
+cd
+cd /Users/waydotnet/.oh-my-zsh/custom/
+ls
+mkdir plugins
+cd plugins/
+mkdir waydotnet
+cd waydotnet/
+find-file waydotnet.plugin.zsh
+cd ..
+cd views/layouts/
+mv application.html.slim application.slim
+ls
+cd ..
+ls
+mv contacts.html.slim contacts.slim
+ls
+mv gallery.html.slim gallery.slim
+mv index.html.slim index.slim
+ls
+mv brands.html.slim brands.slim
+s
+ls
+mv photogallery.html.slim photogallery.slim
+ls
+cd app/views/layouts/
+ll
+ls
+find-file small.slim
+find-file application.slim
+ls
+rm colorbox.css 
+wget https://github.com/jackmoore/colorbox/raw/master/example1/images/border.png
+wget https://github.com/jackmoore/colorbox/raw/master/example1/images/controls.png
+wget https://github.com/jackmoore/colorbox/raw/master/example1/images/loading.gif
+mv loading.gif loading-gray.git
+mv loading.gif.1 loading.git
+mv loading.git loading.gif
+wget https://github.com/jackmoore/colorbox/raw/master/example1/images/loading_background.png
+wget https://github.com/jackmoore/colorbox/raw/master/example1/images/overlay.png
+chmod +x eshell 
+ll
+ls
+exit
+ll
+ll
+ls
+cd ..
+ls
+cd ..
+cd ..
+cd app/views/
+ls
+cd frontend/
+cd ..
+cd layouts/
+ls
+mv small.slim thumb.slim
+ls
+ls -lah
+cd ..
+ls
+cd errors/
+ls
+mv 404.html.slim 404.slim
+find-file 404.slim 
+less
+lessc
+ll
+ls
+mv preview.slim ../preview.slim
+cd ..
+find-file preview.slim 
+ls
+rm tables.css 
+exit
+cd ..
+cd assets/images/
+ls
+cd buttons/
+ls
+wget https://github.com/WaYdotNET/padrino-framework/raw/6e90fd2bad670087473ade92276789d754d0f39f/padrino-admin/lib/padrino-admin/generators/templates/assets/images/buttons/cross.png
+curl -l https://github.com/WaYdotNET/padrino-framework/raw/6e90fd2bad670087473ade92276789d754d0f39f/padrino-admin/lib/padrino-admin/generators/templates/assets/images/buttons/cross.png
+ls
+find-file minirecord.rb
+message "hello world" | cut -f 1 -d ' '
+message "hello world" | cut -f 2 -d ' '
+ls
+cd works/
+cd a_test/mo
+cd acts-as-taggable-on-padrino/
+cd ..
+cd a_test/
+cd opticalstore/
+cd models/
+find-file photo.rb
+find-file page.rb
