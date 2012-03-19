@@ -1,4 +1,3 @@
-
 ;;; belong to any particular place
 ;;; This file is part of the Emacs Dev Kit
 
@@ -8,9 +7,13 @@
       scroll-preserve-screen-position 1)
 
 ;; mode line settings
+(require 'linum-off)
 (line-number-mode t)                     ; show line number
 (column-number-mode t)                   ; show column number
 (size-indication-mode t)                 ; show file size (Emacs 22+)
+(global-linum-mode t)                    ; shwo line number into left
+                                        ; side
+(linum-mode t)
 
 ;; general settings
 (setq-default indent-tabs-mode nil)      ; I hate tabs!
@@ -355,9 +358,9 @@
 
 ;; tomatinho
 ;; https://github.com/konr/tomatinho
-(add-to-list 'load-path "~/.emacs.d/tomatinho")
-(require 'tomatinho)
-(global-set-key (kbd "<f4>") 'tomatinho)
+;; add-to-list 'load-path "~/.emacs.d/tomatinho")
+;; (require 'tomatinho)
+;; (global-set-key (kbd "<f4>") 'tomatinho)
 
 ;; gist
 ;; https://github.com/defunkt/gist.el

@@ -25,6 +25,7 @@
   (paredit-mode +1)
   (turn-off-whitespace))
 
+
 ;; sr-speedbar
 (require 'sr-speedbar)
 (speedbar-add-supported-extension ".rb")
@@ -46,5 +47,40 @@
 (speedbar-add-supported-extension ".slim")
 (speedbar-add-supported-extension ".tt")
 
-(sr-speedbar-refresh-turn-off)
+;; disable line numbers in the speedbar frame
+(add-to-list 'linum-disabled-modes-list '(speedbar-mode))
+
+;; (sr-speedbar-refresh-turn-off)
+;; show all files
+(setq speedbar-show-unknown-files t)
+
+;; turn off the ugly icons
+(setq speedbar-use-images nil)
+
+;; left-side pane
+(setq sr-speedbar-right-side nil)
+
+;; don't refresh on buffer changes
+(setq sr-speedbar-auto-refresh nil)
+
+;; nicer fonts for speedbar when in GUI
+(when (window-system)
+  ;; keep monospace buttons, but smaller height
+  (set-face-attribute 'speedbar-button-face nil :height 100)
+
+  ;; change to system default UI font for entries
+  (dolist (face (list 'speedbar-file-face 'speedbar-directory-face
+                      'speedbar-tag-face 'speedbar-selected-face
+                      'speedbar-highlight-face))
+    (if (eq system-type 'darwin) ;; Lucida Grande on OS X
+        (set-face-attribute face nil :family "Lucida Grande" :height 90)
+      (set-face-attribute face nil :family "Droid Sans" :height 90))))
+
+;; no left fringe and half-size right fringe. TODO: doesn't work
+(add-to-list 'speedbar-frame-parameters '(left-fringe . 0))
+
+(require 'htmlize)
+(require 'tomatinho)
+(global-set-key (kbd "<f4>") 'tomatinho)
+
 (provide 'coding-config)

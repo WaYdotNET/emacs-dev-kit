@@ -7,3 +7,9 @@
 [submodule "auto-complete"]
 	path = auto-complete
 	url = git://github.com/purcell/auto-complete.git
+[submodule "vendor/coffee-mode"]
+	path = vendor/coffee-mode
+	url = git://github.com/defunkt/coffee-mode.git
+[submodule "vendor/twittering-mode"]
+	path = vendor/twittering-mode
+	url = git://github.com/hayamiz/twittering-mode.git
