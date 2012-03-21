@@ -19,7 +19,7 @@
 (setq TeX-view-program-list
       '(("DVI Viewer" "evince %o")
         ("PDF Viewer" "evince %o")
-        ("Google Chrome" "google-chrome %o")))
+        ("Chromium" "chromium-browser %o")))
 
 (add-hook 'LaTeX-mode-hook 'turn-on-auto-fill)
 (add-hook 'LaTeX-mode-hook (lambda () (abbrev-mode +1)))

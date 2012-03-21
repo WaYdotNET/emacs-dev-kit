@@ -199,9 +199,9 @@
 ;; don't kill my precious manuals while I'm still reading them
 (add-to-list 'clean-buffer-list-kill-never-buffer-names "*info*")
 
-;; use Google Chrome as default browser
+;; use Chromium Browser  as default browser
 (setq  browse-url-browser-function 'browse-url-generic
-       browse-url-generic-program "/usr/bin/google-chrome")
+       browse-url-generic-program "/usr/bin/chromium-browser")
 
 ;; automatically save buffers associated with files on buffer switch
 ;; and on windows switch
